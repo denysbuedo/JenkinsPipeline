@@ -18,7 +18,4 @@ pipeline {
 			echo "Running Monitor Stage"
 		}
 	}
-	
-
-
 }
