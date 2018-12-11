@@ -1,11 +1,11 @@
 node {
    stage('Preparation') {
-        echo "Preparation Stage from GitHub"  
+        echo 'Preparation Stage from GitHub'  
    }
    stage('Build') {
-        echo "Build Stage from GitHub"
+        echo 'Build Stage from GitHub'
    }
    stage('Results') {
-        echo "Results Stage from GitHub"
+        echo 'Results Stage from GitHub'
    }
 }
