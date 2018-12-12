@@ -1,27 +1,12 @@
-node {
-    try {
-        stage ('Clone') {
-        	echo 'shell scripts to Clone project...'
-        }
-        stage ('Build') {
-        	echo 'shell scripts to build project...'
-        }
-        stage ('Tests') {
-	        parallel 'static': {
-	            echo 'shell scripts to run static tests...'
-	        },
-	        'unit': {
-	            echo 'shell scripts to run unit tests...'
-	        },
-	        'integration': {
-	            echo 'shell scripts to run integration tests...'
-	        }
-        }
-      	stage ('Deploy') {
-            echo 'shell scripts to deploy to server...'
-      	}
-    } catch (err) {
-        currentBuild.result = 'FAILED'
-        throw err
-    }
+stage ('Build') {
+ node {
+ // Checkout
+ checkout scm
+ // install required bundles
+ sh 'bundle install'
+ // build and run tests with coverage
+ sh 'bundle exec rake build spec'
+ // Archive the built artifacts
+ archive (includes: 'pkg/*.gem')
+ }
 }
