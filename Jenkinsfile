@@ -1,4 +1,4 @@
-node {
+/*node {
     try {
         stage ('Clone') {
         	echo 'shell scripts to Clone project...'
@@ -23,5 +23,17 @@ node {
     } catch (err) {
         currentBuild.result = 'FAILED'
         throw err
+    }
+}
+*/
+Jenkinsfile (Declarative Pipeline)
+pipeline {
+    agent { docker { image 'maven:3.3.3' } }
+    stages {
+        stage('build') {
+            steps {
+                sh 'mvn --version'
+            }
+        }
     }
 }
