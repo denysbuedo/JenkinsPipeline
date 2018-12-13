@@ -1,8 +1,27 @@
 node {
-  echo 'Starting'
-  git url: 'https://github.com/jglick/simple-maven-project-with-tests.git'
-  echo 'sh def mvnHome'
-  def mvnHome = tool 'M3'
-  echo 'sh sentences'
-  sh "${mvnHome}/bin/mvn -B verify"
+    try {
+        stage ('Clone') {
+        	echo 'shell scripts to Clone project...'
+        }
+        stage ('Build') {
+        	echo 'shell scripts to build project...'
+        }
+        stage ('Tests') {
+	        parallel 'static': {
+	            echo 'shell scripts to run static tests...'
+	        },
+	        'unit': {
+	            echo 'shell scripts to run unit tests...'
+	        },
+	        'integration': {
+	            echo 'shell scripts to run integration tests...'
+	        }
+        }
+      	stage ('Deploy') {
+            echo 'shell scripts to deploy to server...'
+      	}
+    } catch (err) {
+        currentBuild.result = 'FAILED'
+        throw err
+    }
 }
