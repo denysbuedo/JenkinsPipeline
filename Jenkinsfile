@@ -27,7 +27,7 @@
 }
 */
 pipeline {
-    agent { docker { image 'maven:3.3.3ASasasxaxAxc cv scv sX' } }
+    agent { docker { image 'maven:3.3.3ASasasxaxAxcsfgegbwgrwg cv scv sX' } }
     stages {
         stage('build') {
             steps {
