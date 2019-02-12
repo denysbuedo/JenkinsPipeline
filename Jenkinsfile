@@ -1,4 +1,4 @@
-/*node {
+node {
     try {
         stage ('Clone') {
         	echo 'shell scripts to Clone project...'
@@ -23,29 +23,6 @@
     } catch (err) {
         currentBuild.result = 'FAILED'
         throw err
-    }
-}
-*/
-pipeline {
-    agent { docker { image 'maven:3.3.3ASasasxaxAxcsfgegbwgrwg cv scv sX' } }
-    stages {
-        stage('build') {
-            steps {
-                sh 'mvn --version'
-            }
-        }
-    }
-}
-
-
-pipeline {
-    agent { docker { image 'maven:3.3.3ASasasxaxAxcsfgegbwgrwg cv scv sX' } }
-    stages {
-        stage('build') {
-            steps {
-                sh 'mvn --version'
-            }
-        }
     }
 }
 
