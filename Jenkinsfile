@@ -1,5 +1,4 @@
 node {
-    try {
         stage ('Clone') {
         	echo 'shell scripts to Clone project...'
         }
@@ -19,18 +18,6 @@ node {
         }
       	stage ('Deploy') {
             echo 'shell scripts to deploy to server...'
-      	}
-	stage('Notification'){
-	    emailext (
-   		subject: "Job $JOB_NAME ${env.BUILD_NUMBER}'",
-    		body: """<p>Check console output at <a href=$BUILD_URL$JOB_NAME</a></p>""",
-    		to: "buedo@neuroinformatics-collaboratory.org",
-    		from: "denys.buedo@gmail.com"
-	   )
-    	}
-    } catch (err) {
-        currentBuild.result = 'FAILED'
-        throw err
-    }
+      	}	
 }
 
